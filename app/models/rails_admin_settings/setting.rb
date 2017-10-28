@@ -62,7 +62,7 @@ module RailsAdminSettings
     # t = {_all: 'Все'}
     if ::Settings.table_exists?
       ::RailsAdminSettings::Setting.pluck(:ns).uniq.each do |c|
-         s = "ns_#{c.gsub('-', '_')}".to_sym
+         s = "ns_#{c.gsub('-', '_') rescue ''}".to_sym
          scope s, -> { where(ns: c) }
          # t[s] = c
        end
